@@ -116,10 +116,12 @@ void Image::greyScale()
 
     for(int c = 0; c< w*h; c++)
     {
-       int greyscale = (this->pixels[c].b + this->pixels[c].r + this->pixels[c].g) /3;
-       this->pixels[c].b = greyscale;
-       this->pixels[c].g = greyscale;
-       this->pixels[c].r = greyscale;
+
+            int greyscale = (this->pixels[c].r  +this->pixels[c].g) /3;
+            this->pixels[c].b = greyscale;
+            this->pixels[c].g =greyscale;
+            this->pixels[c].r = greyscale;
+
     }
 }
 void Image::flipHorizontal()
@@ -189,28 +191,37 @@ void Image::flipVertically()
 }
 void Image::AdditionalFunction2()
 {
+    //Darkens the image -- probably going remove this as I don't think its 10 mark worthy :(
+    for(int c = 0; c< w*h; c++)
+    {
 
+         this->pixels[c].b = (this->pixels[c].b + this->pixels[c].b) /2.5;
+         this->pixels[c].g =(this->pixels[c].g + this->pixels[c].g) /2.5;
+         this->pixels[c].r = (this->pixels[c].r +this->pixels[c].r) /2.5;
+    }
 }
 void Image::AdditionalFunction3()
 {
-    //Greyish Scale
+
     for(int c = 0; c< w*h; c++)
     {
-        int greyscale = this->pixels[c].b + this->pixels[c].r + this->pixels[c].g /3;
+        int greyscale = (this->pixels[c].b +  this->pixels[c].g) /3;
         this->pixels[c].b = greyscale;
-        this->pixels[c].g = greyscale;
+        this->pixels[c].g =greyscale;
         this->pixels[c].r = greyscale;
     }
 }
 void Image::AdditionalFunction1()
 {
-    //lsd filter
     for(int c = 0; c< w*h; c++)
     {
-        this->pixels[c].b  = pixels[c].b /0.5;
-        this->pixels[c].g  = pixels[c].g/0.5;
-        this->pixels[c].r  = pixels[c].r/0.5;
+
+        this->pixels[c].b = (this->pixels[c].b +this->pixels[c].b) /-255;
+        this->pixels[c].g = (this->pixels[c].g + this->pixels[c].g) /-255;
+        this->pixels[c].r = (this->pixels[c].r  + this->pixels[c].r)/-255;
+        // r = 112 g = 66 b =20
     }
+
 }
 
 /* Functions used by the GUI - DO NOT MODIFY */
