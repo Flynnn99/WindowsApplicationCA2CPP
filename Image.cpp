@@ -118,6 +118,7 @@ void Image::greyScale()
     {
 
             int greyscale = (this->pixels[c].r  +this->pixels[c].g) /3;
+
             this->pixels[c].b = greyscale;
             this->pixels[c].g =greyscale;
             this->pixels[c].r = greyscale;
@@ -191,13 +192,27 @@ void Image::flipVertically()
 }
 void Image::AdditionalFunction2()
 {
-    //Darkens the image -- probably going remove this as I don't think its 10 mark worthy :(
+    /*Darkens the image -- probably going remove this as I don't think its 10 mark worthy :(
     for(int c = 0; c< w*h; c++)
     {
 
          this->pixels[c].b = (this->pixels[c].b + this->pixels[c].b) /2.5;
          this->pixels[c].g =(this->pixels[c].g + this->pixels[c].g) /2.5;
          this->pixels[c].r = (this->pixels[c].r +this->pixels[c].r) /2.5;
+    }*/
+
+
+    for(int c = 0; c<w*h; c++)
+    {
+        int newRed = 255 - this->pixels[c].r;
+        int newGreen = 255 - this->pixels[c].g;
+        int newBlue = 255 - this->pixels[c].b;
+
+
+        this->pixels[c].r = newRed;
+        this->pixels[c].g = newGreen;
+        this->pixels[c].b = newBlue;
+
     }
 }
 void Image::AdditionalFunction3()
