@@ -205,10 +205,41 @@ void Image::AdditionalFunction3()
 
     for(int c = 0; c< w*h; c++)
     {
-        int greyscale = (this->pixels[c].b +  this->pixels[c].g) /3;
-        this->pixels[c].b = greyscale;
-        this->pixels[c].g =greyscale;
-        this->pixels[c].r = greyscale;
+
+        int newRed = 0.393*this->pixels[c].r + 0.769*this->pixels[c].g + 0.189*this->pixels[c].b;
+        int newGreen = 0.349*this->pixels[c].r + 0.686*this->pixels[c].g+ 0.168*this->pixels[c].b;
+        int newBlue =  0.272*this->pixels[c].r + 0.534*this->pixels[c].g + 0.131*this->pixels[c].b;
+
+        if(newRed > 255)
+        {
+        this->pixels[c].r = 255;
+        }
+        else
+        {
+            this->pixels[c].r = newRed;
+        }
+
+        if(newGreen > 255)
+        {
+            this->pixels[c].g = 255;
+        }
+        else
+        {
+            this->pixels[c].g = newGreen;
+        }
+
+        if(newBlue > 255)
+        {
+            this->pixels[c].b = 255;
+        }
+        else
+        {
+            this->pixels[c].b = newBlue;
+        }
+
+
+
+
     }
 }
 void Image::AdditionalFunction1()
