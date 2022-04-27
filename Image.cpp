@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <cstring>
 #include "Image.h"
+#include "math.h"
 
 
 
@@ -262,10 +263,48 @@ void Image::AdditionalFunction1()
     for(int c = 0; c< w*h; c++)
     {
 
-        this->pixels[c].b = (this->pixels[c].b +this->pixels[c].b) /-255;
-        this->pixels[c].g = (this->pixels[c].g + this->pixels[c].g) /-255;
-        this->pixels[c].r = (this->pixels[c].r  + this->pixels[c].r)/-255;
-        // r = 112 g = 66 b =20
+        pixels[c].r = pixels[c].g = pixels[c].b;
+    }
+
+}
+void Image::Gamma()
+{
+    for(int c = 0; c< w*h; c++)
+    {
+        float gamma=1/2.2f;
+
+        pixels[c].r = pow(pixels[c].r /255.0f, gamma) * 255;
+        pixels[c].g = pow(pixels[c].g /255.0f, gamma) * 255;
+        pixels[c].b = pow(pixels[c].b /255.0f, gamma) * 255;
+    }
+}
+
+void Image::AdvancedFeature()
+{
+    int pixels[3];
+    unsigned int tempPixel;
+    unsigned int tempPixel1;
+
+    for(int x= 0; x < w; x++)
+    {
+        for(int y =0; y <h/2; y++)
+        {
+            tempPixel = x + y * w;
+            tempPixel1 = x +  (h - 1 - y) ;
+
+
+            pixels[0] = this->pixels[tempPixel].r;
+            pixels[1] = this->pixels[tempPixel].g;
+            pixels[2] = this->pixels[tempPixel].b;
+
+            this->pixels[tempPixel].r = this->pixels[tempPixel1].r;
+            this->pixels[tempPixel].g = this->pixels[tempPixel1].g;
+            this->pixels[tempPixel].b = this->pixels[tempPixel1].b;
+
+            this->pixels[tempPixel1].r = pixels[0];
+            this->pixels[tempPixel1].g = pixels[1];
+            this->pixels[tempPixel1].b = pixels[2];
+        }
     }
 
 }
