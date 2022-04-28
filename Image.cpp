@@ -281,29 +281,30 @@ void Image::Gamma()
 
 void Image::AdvancedFeature()
 {
-    int pixels[3];
-    unsigned int tempPixel;
-    unsigned int tempPixel1;
-
-    for(int x= 0; x < w; x++)
+    for(int c = 0; c<w*h; c++)
     {
-        for(int y =0; y <h/2; y++)
+        pixels[c].r =pixels[c].r + pixels[c].g + pixels[c].b /3;
+        pixels[c].g =pixels[c].r + pixels[c].g + pixels[c].b /3;
+        pixels[c].b =pixels[c].r + pixels[c].g + pixels[c].b /3;
+
+        int rand1 = rand()%100;
+
+        if(rand1 <10)
         {
-            tempPixel = x + y * w;
-            tempPixel1 = x +  (h - 1 - y) ;
+            int rand2 = rand()%2;
 
+            if (rand2 == 0)
+            {
+                pixels[c].r = 0;
+                pixels[c].g = 0;
+                pixels[c].b = 0;
 
-            pixels[0] = this->pixels[tempPixel].r;
-            pixels[1] = this->pixels[tempPixel].g;
-            pixels[2] = this->pixels[tempPixel].b;
-
-            this->pixels[tempPixel].r = this->pixels[tempPixel1].r;
-            this->pixels[tempPixel].g = this->pixels[tempPixel1].g;
-            this->pixels[tempPixel].b = this->pixels[tempPixel1].b;
-
-            this->pixels[tempPixel1].r = pixels[0];
-            this->pixels[tempPixel1].g = pixels[1];
-            this->pixels[tempPixel1].b = pixels[2];
+            } else
+            {
+                pixels[c].r = 255;
+                pixels[c].g = 255;
+                pixels[c].b = 255;
+            }
         }
     }
 
