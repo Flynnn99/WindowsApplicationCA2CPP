@@ -57,7 +57,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD3, L"&Sepia"); // Copy this line to add
     AppendMenuW(Alter, MF_SEPARATOR, 0, NULL);
     AppendMenuW(Alter, MF_STRING, IDM_GAMMA, L"&Gamma"); // Copy this line to add
-    AppendMenuW(Alter, MF_STRING, IDM_EDIT_AV, L"&Advanced Feature"); // Copy this line to add
+    AppendMenuW(Alter, MF_STRING, IDM_EDIT_AV, L"&Acid Noise"); // Copy this line to add
      // Copy this line to add
 
 

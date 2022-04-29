@@ -260,10 +260,33 @@ void Image::AdditionalFunction3()
 }
 void Image::AdditionalFunction1()
 {
-    for(int c = 0; c< w*h; c++)
-    {
+    int pixel[3];
+    unsigned int img1;
+    unsigned int mirrorImg;
+
+    for(int c = 0; c< w*h; c++) {
 
         pixels[c].r = pixels[c].g = pixels[c].b;
+    }
+
+
+    for(int x = 0; x<w; x++)
+    {
+        for(int y = 0; y<h; y++)
+        {
+            img1 = x + y * w;
+            mirrorImg = x + (h - 1 -y )* w;
+
+
+                pixel[0] = this->pixels[img1].r;
+                pixel[1] = this->pixels[img1].g;
+                pixel[2] = this->pixels[img1].b;
+
+                this->pixels[img1] = this->pixels[mirrorImg];
+
+
+
+        }
     }
 
 }
